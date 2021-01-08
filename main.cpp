@@ -14,6 +14,8 @@ int back_test ();
 int data_test ();
 int swap_test ();
 
+int plus_test();
+
 int main() {
     //size_test();
     //max_size_test();
@@ -26,6 +28,7 @@ int main() {
     //back_test ();
     //data_test ();
     //swap_test ();
+    plus_test();
 
 }
 
@@ -252,4 +255,42 @@ int swap_test ()
     std::cout << '\n';
 
     return 0;
+}
+
+int plus_test(){
+    Vector<int> foo;   // three ints with a value of 100
+    int x = 100;
+    for (int i=1;i<=3;i++) foo.push_back(x);
+    Vector<int> bar;   // five ints with a value of 200
+    int y = 200;
+    for (int i=1;i<=5;i++) bar.push_back(y);
+
+    Vector<int> s = foo + bar;
+
+    std::cout << "s contains:";
+    for (unsigned i=0; i<s.size(); i++)
+        std::cout << ' ' << s[i];
+    std::cout << '\n';
+
+    return 0;
+
+}
+
+int plus_ass_test(){
+    Vector<int> foo;   // three ints with a value of 100
+    int x = 100;
+    for (int i=1;i<=3;i++) foo.push_back(x);
+    Vector<int> bar;   // five ints with a value of 200
+    int y = 200;
+    for (int i=1;i<=5;i++) bar.push_back(y);
+
+    foo += bar;
+
+    std::cout << "s contains:";
+    for (unsigned i=0; i<foo.size(); i++)
+        std::cout << ' ' << foo[i];
+    std::cout << '\n';
+
+    return 0;
+
 }

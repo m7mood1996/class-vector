@@ -42,6 +42,10 @@ public:
 
     inline void swap(Vector<T> & other);
     inline void clear();
+
+    template<typename G>
+    friend Vector<G> operator+(Vector<G> &this_ve, Vector<G> & other);
+    Vector<T> & operator+=(Vector<T> & other);
 private:
 
 
@@ -51,6 +55,8 @@ private:
     T* m_vector;
 
 };
+
+
 
 template<typename T>
 Vector<T>::Vector():m_size(0)
@@ -214,6 +220,34 @@ template<typename T>
 void Vector<T>::clear() {
     m_size = 0;
 }
+
+// Extintion 1
+
+
+
+template<typename T>
+Vector<T> &Vector<T>::operator+=(Vector<T> &other) {
+    if (m_size + other.m_size > m_max_size)
+        reserve(m_size + other.m_size);
+    memcpy(m_vector + m_size, other.m_vector, other.m_size * sizeof(T));
+    m_size = m_size + other.m_size;
+
+    return *this;
+}
+template<typename T>
+Vector<T> operator+(Vector<T> &this_ve, Vector<T> &other)
+{
+    Vector<T> v;
+    v.reserve(this_ve.m_size + other.m_size);
+    memcpy(v.m_vector, this_ve.m_vector, this_ve.m_size * sizeof(T));
+    memcpy(v.m_vector + this_ve.m_size, other.m_vector, other.m_size * sizeof(T));
+    v.m_size = this_ve.m_size + other.m_size;
+    return v;
+
+}
+
+
+
 
 
 #endif //VECTOR_VECTOR_H
