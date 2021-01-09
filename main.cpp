@@ -15,7 +15,7 @@ int data_test ();
 int swap_test ();
 
 int plus_test();
-
+int itirator_test();
 int main() {
     //size_test();
     //max_size_test();
@@ -28,7 +28,8 @@ int main() {
     //back_test ();
     //data_test ();
     //swap_test ();
-    plus_test();
+    //plus_test();
+    itirator_test();
 
 }
 
@@ -292,5 +293,20 @@ int plus_ass_test(){
     std::cout << '\n';
 
     return 0;
+}
 
+int itirator_test(){
+    Vector<int> foo;   // three ints with a value of 100
+    int x = 100;
+    for (int i=1;i<=3;i++){
+        x*=i;
+        foo.push_back(x);
+    }
+
+    for(Vector<int>::iterator it = foo.begin(); it != foo.end(); it++){
+        std::cout << *it << std::endl;
+
+    }
+
+    return 0;
 }

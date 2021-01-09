@@ -46,16 +46,43 @@ public:
     template<typename G>
     friend Vector<G> operator+(Vector<G> &this_ve, Vector<G> & other);
     Vector<T> & operator+=(Vector<T> & other);
+
+    class iterator;
+    iterator begin() { return iterator(0, this); }
+    iterator end() { return iterator(m_size, this); }
 private:
-
-
-
     size_t m_size;
     size_t m_max_size;
     T* m_vector;
 
+
 };
 
+
+template<typename T>
+class Vector<T>::iterator{
+public:
+    iterator(size_t pos, Vector<T> *vector):m_pos(pos),m_vector(vector){
+
+    }
+    inline iterator &operator++(int){
+        ++m_pos;
+        return *this;
+    }
+    inline T& operator*(){
+        return (m_vector->at(m_pos));
+    }
+    inline bool operator!=(const iterator& other) const{
+        return m_pos != other.m_pos;
+    }
+    inline bool operator==(const iterator& other) const{
+        return m_pos == other.m_pos;
+    }
+
+private:
+    size_t m_pos;
+    Vector<T> *m_vector;
+};
 
 
 template<typename T>
